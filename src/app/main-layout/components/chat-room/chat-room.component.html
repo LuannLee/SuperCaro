@@ -1,0 +1,78 @@
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="16px"
+  fxLayoutAlign="center"
+
+>
+  <div fxFlex="20%" class="left-room">
+    <mat-list>
+      <div mat-subheader>Danh sách người chơi</div>
+      <mat-list-item matRipple >
+        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-bat.svg" class="icon-style" >
+        <div mat-line><label class="title">LuanLee</label></div>
+        <div mat-line> 100 </div>
+      </mat-list-item>
+
+      <mat-list-item matRipple >
+        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-bee.svg" class="icon-style">
+        <div mat-line><label class="title">Nguyenn Haii</label></div>
+        <div mat-line> 100 </div>
+      </mat-list-item>
+
+      <mat-list-item matRipple >
+        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-chicken.svg" class="icon-style">
+        <div mat-line><label class="title">Haii Nguyenn</label></div>
+        <div mat-line> 100 </div>
+      </mat-list-item>
+
+      <mat-list-item matRipple >
+        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-kangoroo.svg" class="icon-style">
+        <div mat-line ><label class="title">LuanLee</label></div>
+        <div mat-line> 100 </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <mat-divider [vertical]="true"></mat-divider>
+
+  <div fxFlex="75%" class="right-room">
+    <mat-list>
+      <div mat-subheader>Phòng chờ</div>
+    </mat-list>
+
+    <div style="height: calc(100vh - 185px);">
+      <mat-grid-list cols="5" rowHeight="1:1" gutterSize = "16px">
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1 - Nguyenn Haii</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+        <mat-grid-tile matRipple>
+          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
+          <img src="assets/icon/room/room.svg" class="room-image">
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+      <mat-divider ></mat-divider>
+    <div style="height: 60px; width: 100%;">
+      <button mat-flat-button class="btn-create-room">Tạo phòng</button>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+.main-head{
+  height: 64px;
+}
+
+.main-body{
+  height: calc(100vh - 64px );
+
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.main-toolbar{
+  background-color: #3f3d56;
+  color: white;
+}
+
+.menu-image{
+  width: 280px;
+  object-fit: contain;
+}
+
+.main-name-profile {
+  padding: 10px;
+  font-weight: 600;
+  color: #3f3d56;
+}
