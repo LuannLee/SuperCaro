@@ -33,7 +33,7 @@
 
 .display-message{
   width: 100%;
-  height: calc(100vh - 360px);
+  height: calc(100vh - 366px);
   background-color: whitesmoke;
 }
 
@@ -49,19 +49,22 @@ mat-form-field{
 .item-message{
   width: 100%;
   max-height: 300px;
-
 }
 
 .icon-size {
   width: 24px;
   height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
-.icon{
-  transform: translateX(50%) translateY(50%);
-}
+
 .message{
   border-radius: 10px;
-  background-color: red;
   line-height: 32px;
   text-align: center;
+  background-color: #3f3d56;
+  color: white;
+  font-weight: 400;
 }
