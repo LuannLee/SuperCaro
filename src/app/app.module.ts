@@ -48,6 +48,7 @@ import { ChatRoomComponent } from './main-layout/components/chat-room/chat-room.
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatchDualComponent } from './main-layout/components/match-dual/match-dual.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -98,7 +99,9 @@ import { MatchDualComponent } from './main-layout/components/match-dual/match-du
     MatTooltipModule,
     MatTreeModule,
 
-    FlexLayoutModule
+    FlexLayoutModule,
+
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
