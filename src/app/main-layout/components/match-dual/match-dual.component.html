@@ -37,19 +37,17 @@
       <div class="display-message">
         <!-- Hiển thị tin nhắn -->
         <div
-        fxLayout="row"
+        [fxLayout]=" user.name == item.owner ? 'row' : 'row-reverse'"
         fxLayoutWrap
         style="width: 100%"
+        fxLayoutAlign="end center"
         class="item-message"
         *ngFor="let item of messages"
         >
-          <div class="icon">
-            <img
-              src="assets/icon/Creative-Tail-Animal-bat.svg"
-              class="icon-size"
-            />
-          </div>
           <div class="message">{{ item.content }}</div>
+          <div class="icon">
+            <img [src]="item.icon" class="icon-size" />
+          </div>
         </div>
 
       </div>
@@ -71,7 +69,13 @@
       <div mat-subheader>TRẬN ĐẤU</div>
     </mat-list>
 
-    <div style="height: calc(100vh - 185px)"></div>
+    <div style="height: calc(100vh - 185px)">
+
+      <mat-grid-list cols="30" rowHeight="40px" >
+        <mat-grid-tile matRipple  *ngFor="let item of boardChess"></mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
 
     <mat-divider></mat-divider>
 

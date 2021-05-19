@@ -7,23 +7,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchDualComponent implements OnInit {
 
-
+  // đóng vai trò là tài khoản hiện tại mà trình duyệt đang đăng nhập
   public user = {
-    icon : "",
-    name : "Luan"
+    icon : "assets/icon/Creative-Tail-Animal-bear.svg",
+    name : ""
   }
   public messages : any[] = [];
   public tempMessage = "";
 
-  constructor() { }
+
+
+  public isLogin() : boolean{
+
+    // Xử lý gì đó.....
+
+    return true;
+  }
+// Ma trận tham chiếu bàn cờ
+  public boardChess : any[] = [];
+
+  constructor() {
+
+    for (let i = 0; i < 19; i++) {
+      for (let j = 0; j < 30; j++) {
+        this.boardChess.push(
+          {
+            x : i,
+            y : j,
+            mark: false,
+            player: null
+          }
+
+        )
+
+      }
+    }
+
+   }
 
   ngOnInit() {
   }
 
   public sendMessage(event : any){
     let newMessage  = {
-      icon: "",
-      name : "LuanLee",
+      icon: this.user.icon,
+      name : "",
       content: event.target.value,
       owner : this.user.name
     }
@@ -32,8 +60,5 @@ export class MatchDualComponent implements OnInit {
 
     this.tempMessage = "";
   }
-
-
-
 
 }

@@ -33,7 +33,7 @@
 
 .display-message{
   width: 100%;
-  height: calc(100vh - 365px);
+  height: calc(100vh - 361px);
   background-color: whitesmoke;
 }
 
@@ -73,5 +73,9 @@ mat-form-field{
 
 .banner-image {
   width: 100%;
-  height: 28%;
+  height: 18%;
+}
+
+mat-grid-tile {
+  background: lightgrey;
 }
