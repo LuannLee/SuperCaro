@@ -28,7 +28,7 @@ export class MatchDualComponent implements OnInit {
 
   constructor() {
 
-    for (let i = 0; i < 19; i++) {
+    for (let i = 0; i < 17; i++) {
       for (let j = 0; j < 30; j++) {
         this.boardChess.push(
           {
