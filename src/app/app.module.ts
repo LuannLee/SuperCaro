@@ -49,6 +49,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatchDualComponent } from './main-layout/components/match-dual/match-dual.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { CaroApiService } from './services/caro-api.service';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { FormsModule } from '@angular/forms';
       LoginComponent,
       MainLayoutComponent,
       ChatRoomComponent,
-      MatchDualComponent
+      MatchDualComponent,
+      RegisterComponent
    ],
   imports: [
     BrowserModule,
@@ -103,7 +106,9 @@ import { FormsModule } from '@angular/forms';
 
     FormsModule
   ],
-  providers: [],
+  providers: [
+    CaroApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
