@@ -15,17 +15,17 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Mật khẩu</mat-label>
-      <input matInput placeholder="********" [type]="hide ? 'password' : 'text'" [(ngModel)]="resgisterModel.password">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput placeholder="********" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="resgisterModel.password">
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Xác nhận mật khẩu</mat-label>
-      <input matInput placeholder="********" [type]="hide ? 'password' : 'text'" [(ngModel)]="resgisterModel.confirmPassword">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput placeholder="********" [type]="hideConfirmPassword ? 'password' : 'text'" [(ngModel)]="resgisterModel.confirmPassword">
+      <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 
@@ -34,6 +34,7 @@
     <button
       mat-raised-button
       style="float: right; background-color: #536DFE; color: white"
+      (click) = "registerApi()"
     >
       Đăng Ký
     </button>

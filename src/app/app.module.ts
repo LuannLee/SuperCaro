@@ -51,6 +51,7 @@ import { MatchDualComponent } from './main-layout/components/match-dual/match-du
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { CaroApiService } from './services/caro-api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -102,9 +103,11 @@ import { CaroApiService } from './services/caro-api.service';
     MatTooltipModule,
     MatTreeModule,
 
-    FlexLayoutModule,
+    FlexLayoutModule, // để sử dụng Flex
 
-    FormsModule
+    FormsModule, // để sử dụng ngModel
+
+    HttpClientModule // để call API tới server
   ],
   providers: [
     CaroApiService
