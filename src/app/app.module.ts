@@ -51,9 +51,14 @@ import { MatchDualComponent } from './main-layout/components/match-dual/match-du
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { CaroApiService } from './services/caro-api.service';
+
 import { HttpClientModule } from '@angular/common/http';
 
+export function tokenGetter() {
+  return localStorage.getItem("access_token"); // lấy chuỗi access_token từ localStorage
+}
 
+import { JwtModule } from "@auth0/angular-jwt";
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +112,17 @@ import { HttpClientModule } from '@angular/common/http';
 
     FormsModule, // để sử dụng ngModel
 
-    HttpClientModule // để call API tới server
+    HttpClientModule, // để call API tới server
+
+    JwtModule.forRoot({ // decode chuỗi token từ localStorage
+      config: {
+        tokenGetter : tokenGetter,
+        allowedDomains: [],
+        disallowedRoutes: []
+      },
+    })
+
+
   ],
   providers: [
     CaroApiService

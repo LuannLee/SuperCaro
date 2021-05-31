@@ -5,7 +5,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Tài khoản</mat-label>
-      <input matInput placeholder="UserName" />
+      <input matInput placeholder="UserName" [(ngModel)]="loginUser.username"/>
     </mat-form-field>
     <!-- <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>Mật khẩu</mat-label>
@@ -13,7 +13,7 @@
     </mat-form-field> -->
     <mat-form-field appearance="outline">
       <mat-label>Mật khẩu</mat-label>
-      <input matInput placeholder="********" [type]="hide ? 'password' : 'text'">
+      <input matInput placeholder="********" [type]="hide ? 'password' : 'text'" [(ngModel)]="loginUser.password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -22,6 +22,7 @@
     <button
       mat-raised-button
       style="float: right; background-color: #536DFE; color: white"
+      (click) = "loginClick()"
     >
       Đăng Nhập
     </button>
