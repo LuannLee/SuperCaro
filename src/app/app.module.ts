@@ -59,6 +59,7 @@ export function tokenGetter() {
 }
 
 import { JwtModule } from "@auth0/angular-jwt";
+import { CaroRealTimeService } from './services/caro-real-time.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,7 +126,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 
   ],
   providers: [
-    CaroApiService
+    CaroApiService,
+    CaroRealTimeService
   ],
   bootstrap: [AppComponent]
 })

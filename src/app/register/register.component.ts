@@ -43,6 +43,8 @@ export class RegisterComponent implements OnInit {
     localStorage.setItem('user_name_register', this.resgisterModel.userName);
     localStorage.setItem('password_register', this.resgisterModel.password);
 
+    localStorage.setItem('loading_register', 'true');// thông tài khoản vừa đc khởi tạo trong localStorage
+
     this.gotoNav('login');
   }
 

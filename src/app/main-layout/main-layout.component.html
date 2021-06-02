@@ -18,7 +18,7 @@
       <button mat-menu-item>
         <mat-icon>history</mat-icon>
         Lịch Sử Trận Đấu</button>
-      <button mat-menu-item>
+      <button mat-menu-item (click) = "logOut()">
         <mat-icon>logout</mat-icon>
         Đăng Xuất</button>
     </mat-menu>
@@ -27,6 +27,6 @@
 
     <!-- Main Body Component -->
 <div class="main-body">
-  <!-- <app-chat-room></app-chat-room> -->
-  <app-match-dual></app-match-dual>
+  <app-chat-room></app-chat-room>
+  <!-- <app-match-dual></app-match-dual> -->
 </div>

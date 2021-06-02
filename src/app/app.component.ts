@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Super Caro 2021';
+
+  constructor(){
+    localStorage.setItem('loading_register', 'false');
+  }
 }
