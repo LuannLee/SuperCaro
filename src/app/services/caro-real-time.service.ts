@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,24 +12,35 @@ export class CaroRealTimeService {
 
   public users : any;
 
-  public startConnection(){
-    this.hubConnection = new HubConnectionBuilder()
-    .withUrl(`${environment.caroDomain}/real-time`)
-    .build();
+  public messageSouse = new BehaviorSubject(null);
 
-    this.hubConnection
-    .start()
-    .then(() => console.log("Kết nối SignalR thành công!"))
-    .catch(err => console.log("Kết nối thất bại!" + err));
+  public sendMessage(message : any){
+    this.messageSouse.next(message);
   }
 
-  public addTransferUserOnlineListener(){
-    this.hubConnection?.on('user-online', (users : any) => {
-      this.users = users;
-      console.log(users)
-    });
-  }
+constructor() {
+  this.hubConnection = new HubConnectionBuilder()
+  .withUrl(`${environment.caroDomain}/real-time`)
+  .build();
+ }
 
-constructor() { }
+public startConnection(){
+  this.hubConnection = new HubConnectionBuilder()
+  .withUrl(`${environment.caroDomain}/real-time`)
+  .build();
+
+  this.hubConnection
+  .start()
+  .then(() => console.log("Kết nối SignalR thành công!"))
+  .catch(err => console.log("Kết nối thất bại!" + err));
+}
+
+public addTransferUserOnlineListener(){
+  this.hubConnection?.on('user-online', (users : any) => {
+    console.log("Có ai đó đã login or logout");
+    this.users = users;
+    this.sendMessage(this.users);
+  });
+}
 
 }

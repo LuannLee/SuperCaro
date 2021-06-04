@@ -10,29 +10,13 @@
   <div fxFlex="20%" class="left-room">
     <mat-list>
       <div mat-subheader>Danh sách người chơi</div>
-      <mat-list-item matRipple >
+
+      <mat-list-item matRipple *ngFor="let user of users">
         <img mat-list-icon src="assets/icon/Creative-Tail-Animal-bat.svg" class="icon-style" >
-        <div mat-line><label class="title">LuanLee</label></div>
-        <div mat-line> 100 </div>
+        <div mat-line><label class="title">{{ user.name }} - {{(user.status)? 'Online' : 'Offline' }}</label></div>
+        <div mat-line> {{ user.score }} </div>
       </mat-list-item>
 
-      <mat-list-item matRipple >
-        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-bee.svg" class="icon-style">
-        <div mat-line><label class="title">Nguyenn Haii</label></div>
-        <div mat-line> 100 </div>
-      </mat-list-item>
-
-      <mat-list-item matRipple >
-        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-chicken.svg" class="icon-style">
-        <div mat-line><label class="title">Haii Nguyenn</label></div>
-        <div mat-line> 100 </div>
-      </mat-list-item>
-
-      <mat-list-item matRipple >
-        <img mat-list-icon src="assets/icon/Creative-Tail-Animal-kangoroo.svg" class="icon-style">
-        <div mat-line ><label class="title">LuanLee</label></div>
-        <div mat-line> 100 </div>
-      </mat-list-item>
     </mat-list>
   </div>
 
