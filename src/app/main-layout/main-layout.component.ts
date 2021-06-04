@@ -37,7 +37,7 @@ export class MainLayoutComponent implements OnInit {
     localStorage.removeItem('access_token');
 
     let loginModel : LoginModel = new LoginModel();
-    loginModel.username = this.decodedToken.userName;
+    loginModel.username = this.decodedToken.useName;
     loginModel.password = this.decodedToken.password;
 
     this._caroApiService.logout(loginModel).subscribe((result : any) => {
