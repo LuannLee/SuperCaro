@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginModel } from '../models/login-model';
+import { CaroApiService } from '../services/caro-api.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,7 +16,10 @@ export class MainLayoutComponent implements OnInit {
   public decodedToken: any;
 
   constructor(private _jwtHelperService: JwtHelperService,
-              private _route : Router) {
+              private _route : Router,
+              private _caroApiService: CaroApiService,
+              private _snackBar: MatSnackBar)
+              {
 
     const token = localStorage.getItem('access_token')?.toString();
 
@@ -29,7 +35,25 @@ export class MainLayoutComponent implements OnInit {
     // localStorage.clear(); Xoá toàn bộ cặp key-value
 
     localStorage.removeItem('access_token');
+
+    let loginModel : LoginModel = new LoginModel();
+    loginModel.username = this.decodedToken.userName;
+    loginModel.password = this.decodedToken.password;
+
+    this._caroApiService.logout(loginModel).subscribe((result : any) => {
+      this.openSnackBar("Đăng xuất thành công");
+    },(error) =>{
+      this.openSnackBar("Đăng xuất thất bại");
+    });
+
     this.gotoNav('login');
   }
 
+  public openSnackBar(message: string = '') {
+    this._snackBar.open(message, 'Đồng ý', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 1000,
+    });
+  }
 }

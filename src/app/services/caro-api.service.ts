@@ -18,4 +18,5 @@ export class CaroApiService {
 
   public getUser = () => this.http.get(`${environment.caroDomain}/api/User/get-user`);
 
+  public logout = (loginModel: LoginModel) => this.http.post(`${environment.caroDomain}/api/User/logout`, loginModel, { responseType: 'text' });
 }
