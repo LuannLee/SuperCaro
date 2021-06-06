@@ -8,7 +8,7 @@
 >
       <!-- Danh sách người chơi  -->
   <div fxFlex="20%" class="left-room">
-    <mat-list>
+    <mat-list style="height: calc(100vh - 144px); width: 100%; overflow: auto;">
       <div mat-subheader>Danh sách người chơi</div>
 
       <mat-list-item matRipple *ngFor="let user of users">
@@ -28,32 +28,14 @@
       <div mat-subheader>Phòng chờ</div>
     </mat-list>
 
-    <div style="height: calc(100vh - 185px);">
-      <mat-grid-list cols="5" rowHeight="1:1" gutterSize = "16px">
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1 - Nguyenn Haii</mat-grid-tile-header>
+    <div style="height: calc(100vh - 185px); overflow: auto;">
+      <mat-grid-list cols="6" rowHeight="1:1" gutterSize = "16px">
+
+        <mat-grid-tile matRipple *ngFor="let room of rooms" (click) = "openconfirmDialog(room)">
+          <mat-grid-tile-header>{{room.name}} - {{room.status == 1 ? "Hoạt động" : (room.status == 2) ? "Đang có khách" : "Dừng hoạt động"}}</mat-grid-tile-header>
           <img src="assets/icon/room/room.svg" class="room-image">
         </mat-grid-tile>
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
-          <img src="assets/icon/room/room.svg" class="room-image">
-        </mat-grid-tile>
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
-          <img src="assets/icon/room/room.svg" class="room-image">
-        </mat-grid-tile>
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
-          <img src="assets/icon/room/room.svg" class="room-image">
-        </mat-grid-tile>
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
-          <img src="assets/icon/room/room.svg" class="room-image">
-        </mat-grid-tile>
-        <mat-grid-tile matRipple>
-          <mat-grid-tile-header>Phòng 1</mat-grid-tile-header>
-          <img src="assets/icon/room/room.svg" class="room-image">
-        </mat-grid-tile>
+
       </mat-grid-list>
     </div>
 
