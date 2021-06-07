@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { CaroApiService } from 'src/app/services/caro-api.service';
 
 @Component({
   selector: 'app-match-dual',
@@ -26,7 +29,11 @@ export class MatchDualComponent implements OnInit {
 // Ma trận tham chiếu bàn cờ
   public boardChess : any[] = [];
 
-  constructor() {
+  constructor(
+    private _caroApiService : CaroApiService,
+    private _route : Router,
+    private _snackBar: MatSnackBar,
+  ) {
 
     for (let i = 0; i < 17; i++) {
       for (let j = 0; j < 30; j++) {
@@ -61,4 +68,36 @@ export class MatchDualComponent implements OnInit {
     this.tempMessage = "";
   }
 
+  public leaveRoom() {
+    let userId = localStorage.getItem('userId');
+    let roomId = localStorage.getItem('roomId');
+
+    if(null == userId || null == roomId)
+    {
+      this.openSnackBar("Lỗi !")
+      return;
+    }
+
+
+    this._caroApiService.leaveRoom(userId,roomId).subscribe((response : any) => {
+      this.openSnackBar("Rời phòng thành công !");
+      this.gotoNav("main-layout/chat-room");
+
+    },(error) => {
+
+      this.openSnackBar("Lỗi !");
+
+    })
+
+  }
+
+  public gotoNav = (url: string) => this._route.navigate([`/${url}`]);
+
+  public openSnackBar(message:string = '') {
+    this._snackBar.open(message, 'Đồng ý', {
+      horizontalPosition: "end",
+      verticalPosition: "top",
+      duration: 1000
+    });
+  }
 }

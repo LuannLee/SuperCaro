@@ -22,5 +22,8 @@ export class CaroApiService {
 
   public getRoom = () => this.http.get(`${environment.caroDomain}/api/Rooms`);
 
-  public joinRoom = (userId: string, roomId: string) => this.http.post(`${environment.caroDomain}/api/UserRooms`, {userId: userId, roomId: roomId})
+  public joinRoom = (userId: string, roomId: string) => this.http.post(`${environment.caroDomain}/api/UserRooms`, {userId: userId, roomId: roomId});
+
+  public leaveRoom = (userId: string, roomId: string) => this.http.delete(`${environment.caroDomain}/api/UserRooms/${userId}/${roomId}`, { responseType: 'text' });
+
 }

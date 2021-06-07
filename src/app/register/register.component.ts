@@ -10,6 +10,7 @@ import { CaroApiService } from '../services/caro-api.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
   public hidePassword = true;

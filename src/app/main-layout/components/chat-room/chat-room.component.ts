@@ -102,6 +102,11 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
 
       // Đã đồng ý
       this._caroService.joinRoom(this.decodedToken.id, room.id).subscribe((result : any) => {
+
+        // lưu userId và roomId vào localStorage
+        localStorage.setItem('userId', this.decodedToken.id);
+        localStorage.setItem('roomId', room.id);
+
         this.gotoNav('main-layout/match-dual');
       },(error) => {
         this.openSnackBar(error);
