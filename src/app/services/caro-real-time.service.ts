@@ -12,6 +12,8 @@ export class CaroRealTimeService {
 
   public users : any;
 
+  public message : any;
+
   public messageSouse = new BehaviorSubject(null);
 
   public sendMessage(message : any){
@@ -40,6 +42,13 @@ public addTransferUserOnlineListener(){
     console.log("Có ai đó đã login or logout");
     this.users = users;
     this.sendMessage(this.users);
+  });
+}
+
+public addTransferChatOnlineListener(){
+  this.hubConnection?.on('chat-online', (message : any) => {
+    this.message = message;
+    this.sendMessage(this.message);
   });
 }
 
