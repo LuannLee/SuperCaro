@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CaroApiService } from 'src/app/services/caro-api.service';
+import { CaroRealTimeService } from 'src/app/services/caro-real-time.service';
 
 @Component({
   selector: 'app-match-dual',
@@ -26,14 +28,24 @@ export class MatchDualComponent implements OnInit {
 
     return true;
   }
+
 // Ma trận tham chiếu bàn cờ
   public boardChess : any[] = [];
+
+  public observerMessageSubcription : Subscription | undefined;
 
   constructor(
     private _caroApiService : CaroApiService,
     private _route : Router,
     private _snackBar: MatSnackBar,
+    private _caroRealTime : CaroRealTimeService
   ) {
+
+    // kết nối thời gian thực
+    this._caroRealTime.startConnection();
+
+    // Lắng nghe sự thay đổi của chat
+    this._caroRealTime.addTransferChatOnlineListener();
 
     for (let i = 0; i < 17; i++) {
       for (let j = 0; j < 30; j++) {
@@ -49,24 +61,14 @@ export class MatchDualComponent implements OnInit {
 
       }
     }
-
    }
 
+
   ngOnInit() {
+    this.onMessageListener();
   }
 
-  public sendMessage(event : any){
-    let newMessage  = {
-      icon: this.user.icon,
-      name : "",
-      content: event.target.value,
-      owner : this.user.name
-    }
-
-    this.messages.push(newMessage);
-
-    this.tempMessage = "";
-  }
+  // func rời phòng
 
   public leaveRoom() {
     let userId = localStorage.getItem('userId');
@@ -91,13 +93,60 @@ export class MatchDualComponent implements OnInit {
 
   }
 
+  // chuyển đường dẫn
   public gotoNav = (url: string) => this._route.navigate([`/${url}`]);
 
+  // mở snack Bar
   public openSnackBar(message:string = '') {
     this._snackBar.open(message, 'Đồng ý', {
       horizontalPosition: "end",
       verticalPosition: "top",
       duration: 1000
+    });
+  }
+
+  // Call Api chat
+  public sendMessage(event : any){
+
+    let currentUserId = localStorage.getItem('userId');
+    let currentRoomId = localStorage.getItem('roomId');
+
+    this._caroApiService.sendMessage(currentUserId, currentRoomId, event.target.value).subscribe((response : any) => {
+      this.tempMessage = "";
+    },(error) => {
+
+    })
+  }
+
+  // Lắng nghe message trong SignalR
+  public onMessageListener() {
+    this.observerMessageSubcription = this._caroRealTime.chatSource.asObservable().subscribe((data : any) => {
+
+      let currentUserId = localStorage.getItem('userId');
+      let currentRoomId = localStorage.getItem('roomId');
+
+      if(data?.userId == currentUserId && data?.roomId == currentRoomId){
+        let newMessage = {
+          icon: this.user.icon,
+          name: "",
+          content: data.message,
+          owner: this.user.name,
+        }
+
+        this.messages.push(newMessage);
+      }
+
+      if(data?.userId != currentUserId && data?.roomId == currentRoomId)
+      {
+        let newMessage = {
+          icon: this.user.icon,
+          name: "",
+          content: data.message,
+          owner: "Not Current User",
+        }
+
+        this.messages.push(newMessage);
+      }
     });
   }
 }

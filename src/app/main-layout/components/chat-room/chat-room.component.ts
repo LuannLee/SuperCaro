@@ -57,7 +57,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   }
 
   public onMessageListener(){
-    this.observerMessageSubcription = this._caroRealTime.messageSouse.asObservable().subscribe((data : any) => {
+    this.observerMessageSubcription = this._caroRealTime.messageSource.asObservable().subscribe((data : any) => {
       this.users = data;
 
       // lọc người chơi đang online

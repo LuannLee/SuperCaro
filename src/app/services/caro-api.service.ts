@@ -26,4 +26,5 @@ export class CaroApiService {
 
   public leaveRoom = (userId: string, roomId: string) => this.http.delete(`${environment.caroDomain}/api/UserRooms/${userId}/${roomId}`, { responseType: 'text' });
 
+  public sendMessage = (userId: any, roomId: any, message: any) => this.http.post(`${environment.caroDomain}/api/Chat/message-user`, {userId: userId, roomId: roomId, message: message})
 }

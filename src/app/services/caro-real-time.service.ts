@@ -14,10 +14,14 @@ export class CaroRealTimeService {
 
   public message : any;
 
-  public messageSouse = new BehaviorSubject(null);
+  public messageSource = new BehaviorSubject(null);
+  public chatSource = new BehaviorSubject(null)
 
   public sendMessage(message : any){
-    this.messageSouse.next(message);
+    this.messageSource.next(message);
+  }
+  public sendChat(message : any){
+    this.chatSource.next(message);
   }
 
 constructor() {
@@ -48,7 +52,7 @@ public addTransferUserOnlineListener(){
 public addTransferChatOnlineListener(){
   this.hubConnection?.on('chat-online', (message : any) => {
     this.message = message;
-    this.sendMessage(this.message);
+    this.sendChat(this.message);
   });
 }
 
